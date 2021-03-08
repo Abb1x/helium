@@ -1,6 +1,6 @@
 #include "dll.h"
 #include <stdio.h>
-
+int current_index = 1;
 
 static DLLNode *DLL_new_node(void *data)
 {
@@ -9,6 +9,8 @@ static DLLNode *DLL_new_node(void *data)
     new_node->data = data;
     new_node->prev = NULL;
     new_node->next = NULL;
+    new_node->index = current_index;
+    current_index++;
 
     return new_node;
 }
@@ -30,11 +32,25 @@ static void append(void *data, DLL *self)
     temp->next = new;
     new->prev = temp;
 }
+static void* get_data(int index, DLL *self)
+{
+    DLLNode *temp = self->head;
 
+    while (temp->index != index)
+    {
+        temp = temp->next;
+    }
+
+    if (temp->index == index)
+    {
+        return temp->data;
+    }
+    return NULL;
+}
 static void print_str(DLL *self)
 {
     DLLNode *temp = self->head;
-    
+
     while (temp)
     {
         printf("%s ", *((char **)temp->data));
@@ -42,7 +58,6 @@ static void print_str(DLL *self)
     }
 
     printf("\n");
-
 }
 
 DLL DoublyLinkedList()
@@ -53,5 +68,8 @@ DLL DoublyLinkedList()
     new_list.size = 0;
     new_list.append = append;
     new_list.print_str = print_str;
+    new_list.get_data = get_data;
+
+    current_index = 1;
     return new_list;
 }

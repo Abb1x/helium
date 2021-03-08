@@ -38,6 +38,7 @@ typedef struct DLL_node_struct
     struct DLL_node_struct *next;
     struct DLL_node_struct *prev;
 
+    int index;
     void *data;
 
 } DLLNode;
@@ -48,6 +49,7 @@ typedef struct DLL_struct
     size_t size;
     void (*append)(void *, struct DLL_struct *);
     void (*print_str)(struct DLL_struct *);
+    void *(*get_data)(int, struct DLL_struct *);
 } DLL;
 
 DLL DoublyLinkedList();
