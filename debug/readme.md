@@ -12,4 +12,4 @@ Functions:
 ## unit.c - Unit testing library
 Basic unit testing library.
 Functions:
-- `TEST_EQUAL(a,b)` Will test if the two variables are equal.
+- `TEST_EQUAL(a,b)` Will test if two variables are equal.
