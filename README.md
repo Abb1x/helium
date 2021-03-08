@@ -8,6 +8,7 @@ Helium provides:
 - Data structures implementations
 - Logging
 - Unit testing
+<br />
 More features will be added in the future.
 
 ## Dependencies
