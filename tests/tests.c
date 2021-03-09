@@ -1,8 +1,11 @@
 #include <helium/data/dll.h>
+#include <helium/data/vector.h>
 #include <helium/debug/unit.h>
+
 #include <string.h>
 
 #define TO_STRING(x) *(char **)x
+#define TO_INT(x) *(int *)x
 int main()
 {
 
@@ -19,29 +22,25 @@ int main()
 
     log(INFO, "Testing dll.get_data():");
 
-    printf("\t");
+    for (int i = 1; i < 7; i++)
+    {
+        printf("\t");
+        TEST_EQUAL(strcmp(TO_STRING(new_list.get_data(i, &new_list)), friends[i - 1]), 0);
+    }
+    printf("\n");
+    Vector vector = Vector_new();
 
-    TEST_EQUAL(strcmp(TO_STRING(new_list.get_data(1, &new_list)), "Monica"), 0);
+    char *hello_world[2] = {"Hello", "World!"};
 
-    printf("\t");
+    vector.push_back(&hello_world[0], &vector);
+    vector.push_back(&hello_world[1], &vector);
 
-    TEST_EQUAL(strcmp(TO_STRING(new_list.get_data(2, &new_list)), "Ross"), 0);
+    log(INFO, "Testing vector:");
 
-    printf("\t");
-
-    TEST_EQUAL(strcmp(TO_STRING(new_list.get_data(3, &new_list)), "Rachel"), 0);
-
-    printf("\t");
-
-    TEST_EQUAL(strcmp(TO_STRING(new_list.get_data(4, &new_list)), "Phoebe"), 0);
-
-    printf("\t");
-
-    TEST_EQUAL(strcmp(TO_STRING(new_list.get_data(5, &new_list)), "Chandler"), 0);
-
-    printf("\t");
-
-    TEST_EQUAL(strcmp(TO_STRING(new_list.get_data(6, &new_list)), "Joey"), 0);
-
+    for (int i = 0; i < vector.size; i++)
+    {
+        printf("\t");
+        TEST_EQUAL(strcmp(TO_STRING(vector.data[i]), hello_world[i]), 0);
+    }
     return 0;
 }
