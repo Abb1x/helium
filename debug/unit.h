@@ -31,18 +31,18 @@
 #define HELIUM_UNIT_TEST
 #include "log.h"
 
-
-#define TEST_EQUAL(x, y)						\
-    {                                                                                          \
+#define TEST_EQUAL(x, y)                                                                            \
+    {                                                                                               \
         static char *TEST_STATUS;                                                                   \
-        if (x == y)                                                                            \
-        {                                                                                      \
-            TEST_STATUS = "\033[1;32msuccess \033[0m";                                                                \
-        }                                                                                      \
-        else                                                                                   \
-        {                                                                                      \
-            TEST_STATUS = "\033[1;31mfailed \033[0m";                                                                 \
-        };                                                                                     \
+        if (x == y)                                                                                 \
+        {                                                                                           \
+            TEST_STATUS = "\033[1;32msuccess \033[0m";                                              \
+        }                                                                                           \
+        else                                                                                        \
+        {                                                                                           \
+            TEST_STATUS = "\033[1;31mfailed \033[0m";                                               \
+        };                                                                                          \
         log(TEST, "Testing equality at line %d in file %s... %s", __LINE__, __FILE__, TEST_STATUS); \
     }
+
 #endif
