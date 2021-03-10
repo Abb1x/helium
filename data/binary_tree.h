@@ -26,48 +26,25 @@
 * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include "vector.h"
 
-static void push_back(void *data, Vector *self)
+#ifndef HELIUM_BINARY_TREE_H
+#define HELIUM_BINARY_TREE_H
+
+typedef struct binary_node_struct
 {
-    if (self->size == self->limit)
-    {
-        self->limit = self->limit * 2;
-        self->data = realloc(self->data, sizeof(void *) * self->limit);
-    }
+    void *data;
+    struct binary_node_struct *left;
+    struct binary_node_struct *right;
 
-    self->data[self->size] = data;
-    self->size++;
-}
+} BinaryTreeNode;
 
-static void remove(int index, Vector *self)
+typedef struct
 {
-    if (index > -1 && index < self->size)
-    {
-        self->data[index] = self->data[self->size - 1];
-        self->data[self->size - 1] = NULL;
-        self->size--;
-    }
-}
+    BinaryTreeNode *root;
+    int length;
+} BinaryTree;
 
-static void pop_back(Vector *self)
-{
-    remove(self->size - 1, self);
-}
+BinaryTreeNode *BinaryTreeNewNode(void *data);
+BinaryTree BinaryTree_new(void *data);
 
-Vector Vector_new()
-{
-    Vector new_vector;
-
-    new_vector.limit = 4;
-
-    new_vector.data = malloc(sizeof(void *) * new_vector.limit);
-
-    new_vector.size = 0;
-
-    new_vector.push_back = push_back;
-    new_vector.pop_back = pop_back;
-    new_vector.remove = remove;
-
-    return new_vector;
-}
+#endif

@@ -1,7 +1,7 @@
+#include <helium/data/binary_tree.h>
 #include <helium/data/dll.h>
 #include <helium/data/vector.h>
 #include <helium/debug/unit.h>
-
 #include <string.h>
 
 #define TO_STRING(x) *(char **)x
@@ -42,5 +42,21 @@ int main()
         printf("\t");
         TEST_EQUAL(strcmp(TO_STRING(vector.data[i]), hello_world[i]), 0);
     }
+
+    printf("\n");
+
+    BinaryTree bin_tree = BinaryTree_new(&hello_world[0]);
+    bin_tree.root->left = BinaryTreeNewNode(&hello_world[1]);
+
+    log(INFO, "Testing binary tree:");
+
+    printf("\t");
+
+    TEST_EQUAL(strcmp(TO_STRING(bin_tree.root->data), "Hello"), 0);
+
+    printf("\t");
+
+    TEST_EQUAL(strcmp(TO_STRING(bin_tree.root->left->data), "World!"), 0);
+
     return 0;
 }
