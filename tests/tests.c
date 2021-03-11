@@ -58,5 +58,6 @@ int main()
 
     TEST_EQUAL(strcmp(TO_STRING(bin_tree.root->left->data), "World!"), 0);
 
+    log(INFO,"Test done!");
     return 0;
 }
