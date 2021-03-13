@@ -28,6 +28,8 @@
 */
 #include <stdlib.h>
 #include "binary_tree.h"
+
+/* TODO: maybe add a way to interact with the binary tree with OOP? */
 BinaryTreeNode *BinaryTreeNewNode(void *data)
 {
     BinaryTreeNode *new_node = (BinaryTreeNode *)malloc(sizeof(BinaryTreeNode));
