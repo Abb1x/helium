@@ -4,8 +4,8 @@ c_files = [
 
 ]
 
-c_args = ['-Os','-Wall','-Wextra','-Werror','-ansi','-I./','-fPIC']
+c_args = ['-Os','-Wall','-Wextra','-Werror','-ansi','-I../include','-fPIC']
 
-subdir('debug/')
-subdir('data/')
+subdir('src/debug/')
+subdir('src/data/')
 shared_library('helium',c_files,c_args: c_args)

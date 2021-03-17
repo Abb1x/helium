@@ -14,5 +14,7 @@ More features will be added in the future.
 ## Dependencies
 A libc is required but not a lot of functions from it are used.
 
+## Installing
+To install helium, use the `compile_and_install.sh` script
 ## Why?
 I was tired of always rewriting stuff in my projects, so I hope making a big library will fix that.

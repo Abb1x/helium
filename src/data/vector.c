@@ -26,29 +26,48 @@
 * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include <stdlib.h>
-#include "binary_tree.h"
+#include <data/vector.h>
 
-/* TODO: maybe add a way to interact with the binary tree with OOP? */
-BinaryTreeNode *BinaryTreeNewNode(void *data)
+static void push_back(void *data, Vector *self)
 {
-    BinaryTreeNode *new_node = (BinaryTreeNode *)malloc(sizeof(BinaryTreeNode));
+    if (self->size == self->limit)
+    {
+        self->limit = self->limit * 2;
+        self->data = realloc(self->data, sizeof(void *) * self->limit);
+    }
 
-    /* Assign data to this node */
-    new_node->data = data;
-
-    /* Initialize left and right children as NULL */
-    new_node->left = NULL;
-    new_node->right = NULL;
-
-    return (new_node);
+    self->data[self->size] = data;
+    self->size++;
 }
 
-BinaryTree BinaryTree_new(void *data)
+static void remove(int index, Vector *self)
 {
-    BinaryTree new_tree;
-    
-    new_tree.root = BinaryTreeNewNode(data);
-    
-    return new_tree;
+    if (index > -1 && index < self->size)
+    {
+        self->data[index] = self->data[self->size - 1];
+        self->data[self->size - 1] = NULL;
+        self->size--;
+    }
+}
+
+static void pop_back(Vector *self)
+{
+    remove(self->size - 1, self);
+}
+
+Vector Vector_new()
+{
+    Vector new_vector;
+
+    new_vector.limit = 4;
+
+    new_vector.data = malloc(sizeof(void *) * new_vector.limit);
+
+    new_vector.size = 0;
+
+    new_vector.push_back = push_back;
+    new_vector.pop_back = pop_back;
+    new_vector.remove = remove;
+
+    return new_vector;
 }
