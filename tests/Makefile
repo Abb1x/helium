@@ -1,7 +1,7 @@
 CC=clang
 LDFLAGS = -L../build -lhelium -Wl,-rpath=../build
 TARGET ?= tests
-CFLAGS ?= -Wall -I../..
+CFLAGS ?= -Wall -I../include
 
 SRCS := tests.c
 OBJS := $(addsuffix .o,$(basename $(SRCS)))

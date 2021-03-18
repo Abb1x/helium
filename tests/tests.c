@@ -1,7 +1,8 @@
-#include <helium/data/binary_tree.h>
-#include <helium/data/dll.h>
-#include <helium/data/vector.h>
-#include <helium/debug/unit.h>
+#include <data/binary_tree.h>
+#include <data/dll.h>
+#include <data/vector.h>
+#include <debug/unit.h>
+#include <types/string.h>
 #include <string.h>
 
 #define TO_STRING(x) *(char **)x
@@ -58,7 +59,17 @@ int main()
 
     TEST_EQUAL(strcmp(TO_STRING(bin_tree.root->left->data), "World!"), 0);
 
-    log(INFO,"Test done!");
+    log(INFO, "Test done!");
+
+    String str = String_new();
+
+    str.set("Hello", &str);
+
+    log(TEST, "%s:%d", str.buffer,str.length(&str));
+
+    str.append(" World!",&str);
     
+    log(TEST, "%s:%d", str.buffer);
+
     return 0;
 }
