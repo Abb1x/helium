@@ -46,7 +46,7 @@ static void set_length(String *str, size_t len)
         str->limit = len + 1;
     }
 
-    if (str->size > len)
+    if (str->length(str) > len)
     {
         memset(str->buffer + len, 0, 1);
     }
@@ -80,6 +80,7 @@ String String_new()
     new_string.append = append;
     new_string.set = set;
     new_string.length = length;
+    new_string.size = 0;
     
     return new_string;
 }

@@ -69,7 +69,7 @@ int main()
 
     str.append(" World!",&str);
     
-    log(TEST, "%s:%d", str.buffer);
+    log(TEST, "%s:%d", str.buffer,str.length(&str));
 
     return 0;
 }

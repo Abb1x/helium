@@ -1,5 +1,5 @@
 CC=clang
-LDFLAGS = -L../build -lhelium -Wl,-rpath=../build
+LDFLAGS = -L../build -lhelium
 TARGET ?= tests
 CFLAGS ?= -Wall -I../include
 

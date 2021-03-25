@@ -1,6 +1,6 @@
 <img src="assets/logo.png" align="center" width="100">
 
-# helium
+# libhelium
 A collection of portable and lightweight C libraries
 
 ## What's included?
