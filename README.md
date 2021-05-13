@@ -7,7 +7,7 @@ A collection of portable and lightweight C libraries
 Helium provides:
 - Data structures implementations
 - Logging
-- Unit testing
+- Unit testing (beta)
 <br />
 More features will be added in the future.
 
